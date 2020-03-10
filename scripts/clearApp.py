@@ -5,9 +5,9 @@ import sys
 device = sys.argv[1]
 package = sys.argv[2]
 
-cmd = "adb -s "+ device + " shell pm clear " + package
+cmd = ["adb", "-s", device, "shell", "pm", "clear", package]
 
-subprocess.run(["bash", "-c", cmd])
+subprocess.run(cmd)
 
 exec_str = str.encode('run-as ' + package + '\nmkdir -p files\ntouch files/coverage.exec\nexit\nexit\n', 'ascii')
 

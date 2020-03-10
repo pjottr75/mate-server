@@ -194,7 +194,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows get source lines command!");
-            cmd = "python3 getSourceLines.py " + packageName;
+            cmd = "python getSourceLines.py " + packageName;
             return ProcessRunner.runProcess("powershell", "-command", cmd);
         } else {
             cmd = "./getSourceLines.py " + packageName;
@@ -206,7 +206,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows clear app command!");
-            cmd = "python3 clearApp.py " + deviceID + " " + packageName;
+            cmd = "python clearApp.py " + deviceID + " " + packageName;
         } else {
             cmd = "./clearApp.py " + deviceID + " " + packageName;
         }
@@ -223,7 +223,7 @@ public class Device {
         System.out.println("Storing current Trace file!");
         String cmd = "";
         if (ProcessRunner.isWin) {
-            cmd = "python3 storeCurrentTraceFile.py" + " " + deviceID + " " + packageName;
+            cmd = "python storeCurrentTraceFile.py" + " " + deviceID + " " + packageName;
         } else {
             cmd = "./storeCurrentTraceFile.py " + deviceID + " " + packageName;
         }
@@ -241,7 +241,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows storing coverage command!");
-            cmd = "python3 storeCoverageData.py " + deviceID + " " + packageName + " " + chromosome;
+            cmd = "python storeCoverageData.py " + deviceID + " " + packageName + " " + chromosome;
         } else {
             cmd = "./storeCoverageData.py " + deviceID + " " + packageName + " " + chromosome;
         }
@@ -262,7 +262,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows copy coverage command!");
-            cmd = "python3 copyCoverageData.py " + packageName + " " + chromosome_source
+            cmd = "python copyCoverageData.py " + packageName + " " + chromosome_source
                     + " " + chromosome_target + " " + entities;
         } else {
             cmd = "./copyCoverageData.py " + packageName + " " + chromosome_source + " " + chromosome_target + " " + entities;
@@ -282,7 +282,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows get coverage command!");
-            cmd = "python3 getCoverage.py " + packageName + " " + chromosome;
+            cmd = "python getCoverage.py " + packageName + " " + chromosome;
         } else {
             cmd = "./getCoverage.py " + packageName + " " + chromosome;
         }
@@ -303,13 +303,13 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows get line coverage command!");
-            cmd = "python3 getLineCoveredPercentage.py " + packageName + " " + chromosome;
+            cmd = "python getLineCoveredPercentage.py " + packageName + " " + chromosome;
         } else {
             cmd = "./getLineCoveredPercentage.py " + packageName + " " + chromosome;
         }
         try {
             // TODO: refactor and use ProcessRunner.runProces() (no Windows support yet)
-            ProcessBuilder pb = new ProcessBuilder(Arrays.asList("bash", "-c", cmd));
+            ProcessBuilder pb = new ProcessBuilder(Arrays.asList("powershell", "-command", cmd));
             pb.redirectErrorStream(true);
             Process p = pb.start();
             BufferedWriter br = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
@@ -337,7 +337,7 @@ public class Device {
         String cmd = "";
         if (ProcessRunner.isWin) {
             System.out.println("Running windows get combined coverage command!");
-            cmd = "python3 getCombinedCoverage.py " + packageName + " " + chromosomes;
+            cmd = "python getCombinedCoverage.py " + packageName + " " + chromosomes;
         } else {
             cmd = "./getCombinedCoverage.py " + packageName + " " + chromosomes;
         }

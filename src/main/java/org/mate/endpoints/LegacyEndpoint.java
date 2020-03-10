@@ -824,7 +824,8 @@ public class LegacyEndpoint implements Endpoint {
         String chromosome = parts[2];
         String line = parts[3];
         Device device = Device.devices.get(deviceID);
-        return String.join("\n", device.getLineCoveredPercentage(chromosome, line));
+        List<String> lineCoveredPercentageOut = device.getLineCoveredPercentage(chromosome, line);
+        return lineCoveredPercentageOut.get(lineCoveredPercentageOut.size() - 1);
     }
 
     private String getCombinedCoverage(String cmdStr) {
